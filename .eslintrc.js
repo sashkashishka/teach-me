@@ -1,0 +1,61 @@
+module.exports = {
+  root: true,
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    'emotion',
+    'react-hooks',
+  ],
+  extends: [
+    'airbnb',
+    'plugin:@typescript-eslint/recommended',
+  ],
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    tsconfigRootDir: __dirname,
+    project: [
+      './tsconfig.json',
+    ],
+  },
+  env: {
+    browser: true,
+    es6: true,
+  },
+  globals: {
+    window: false,
+    document: false,
+    fetch: false,
+    graphql: false,
+    __PATH_PREFIX__: true,
+  },
+  rules: {
+    'jsx-a11y/anchor-is-valid': 0,
+    'import/no-extraneous-dependencies': 0,
+    'import/no-webpack-loader-syntax': 2,
+    'import/no-unresolved': 0,
+    'import/extensions': 0,
+    'import/prefer-default-export': 0,
+    'react/jsx-one-expression-per-line': 0,
+    'react/jsx-props-no-spreading': 0,
+    'react/jsx-fragments': 0,
+    'react/jsx-filename-extension': [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    'react/jsx-closing-tag-location': 0,
+    'react/no-danger': 0,
+    'react/no-unescaped-entities': 0,
+    'react/no-array-index-key': 0,
+    'react/prop-types': [1, { skipUndeclared: true }],
+    // hooks rules are not included into airbnb preset
+    'react-hooks/rules-of-hooks': 2,
+    'react-hooks/exhaustive-deps': 1,
+    'no-param-reassign': [2, { props: false }],
+    'no-confusing-arrow': 0,
+    'max-len': 0,
+    'linebreak-style': 0,
+    'camelcase': 0,
+    'arrow-parens': 0,
+    'no-underscore-dangle': 0,
+    'no-unused-expressions': [2, { allowTaggedTemplates: true }],
+    // typescript-lint
+    '@typescript-eslint/camelcase': 0,
+  },
+};

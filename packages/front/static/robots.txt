@@ -1,0 +1,23 @@
+User-Agent: Googlebot
+Disallow: /?*
+Disallow: /*id=*
+Disallow: /customer/
+Disallow: /auth_required_customer.html
+Disallow: /auth_password_reset.html
+
+User-agent: MSNBot/Bingbot
+Disallow: /?*
+Disallow: /*id=*
+Disallow: /customer/
+Disallow: /auth_required_customer.html
+Disallow: /auth_password_reset.html
+
+User-Agent: * 
+Disallow: /?*
+Disallow: /*id=*
+Disallow: /customer/
+Disallow: /auth_required_customer.html
+Disallow: /auth_password_reset.html
+Disallow: /archive/privacy/
+
+Sitemap: https://fastessay.com/sitemap.xml

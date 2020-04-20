@@ -1,0 +1,9 @@
+node_modules/
+.idea/
+coverage/
+.cache/
+public/
+*.log
+.LAST_GREEN_COMMIT
+**/SKIP_THIS_JOB
+.DS_Store

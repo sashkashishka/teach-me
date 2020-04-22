@@ -2,7 +2,14 @@
   "include": [
     "packages/front/src/**/*"
   ],
-  "exclude": ["node_modules", ".cache", "public"],
+  "exclude": [
+    "node_modules", 
+    "**/node_modules", 
+    ".cache",
+    "**/.cache",
+    "public",
+    "**/public"
+  ],
   "compilerOptions": {
     "rootDir": ".",
     "resolveJsonModule": true,

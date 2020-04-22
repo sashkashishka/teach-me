@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "baseUrl": "./",
+    "rootDir": "src",
+    "outDir": "build",
+    "removeComments": true,
+    "typeRoots": [
+      "../../node_modules/@types"
+    ],
+    "types": [
+      "node",
+      "express"
+    ]
+  },
+  "exclude": [
+    "node_modules", 
+    ".cache",
+    "public"
+  ],
+  "include": [
+    "./src/**/*.ts"
+  ]
+}

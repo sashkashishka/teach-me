@@ -1,15 +1,29 @@
-import express from 'express';
+/* eslint-disable import/first */
+// require('dotenv').config();
+import { config } from 'dotenv';
+import App from './app';
+import connectDB from './db';
+import { initialMiddlewares } from './middlewares';
+import {
+  logInRouter,
+  pingRouter,
+} from './routes';
 
-const app = express();
 
-app.use(express.static('public/'));
+const PORT = Number(process.env.PORT || 3000);
 
-app.get('/ping', (req, res) => {
-  res.json({
-    body: 'pong',
-  });
+config({ path: './.env' });
+
+const server = new App({
+  routes: [
+    logInRouter,
+    pingRouter,
+  ],
+  middlewares: [
+    ...initialMiddlewares,
+  ],
+  connectDB,
+  PORT,
 });
 
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!');
-});
+server.start();

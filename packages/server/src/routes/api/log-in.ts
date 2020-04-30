@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+// import { SessionOptions } from 'express-session';
 
 import ClientsModel from '../../models/clients';
 
@@ -36,6 +37,8 @@ router.post(path, async (req: LoginReq, res: LoginRes) => {
     password,
   } = body;
 
+  console.log(req?.session?.isNew())
+
   try {
     const [client] = await ClientsModel.find({ login });
 
@@ -45,16 +48,9 @@ router.post(path, async (req: LoginReq, res: LoginRes) => {
       });
     }
 
-    client.session = 'test';
-
     await client.save();
 
     return res.status(200)
-      .cookie('session', 'test', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: 86400000,
-      })
       .json({
         name: client.name,
         stars: client.stars,

@@ -1,4 +1,5 @@
 import express, { Express, Router } from 'express';
+import path from 'path';
 
 
 interface Middleware {
@@ -49,10 +50,15 @@ class App {
     this.routes.forEach(router => this.app.use('/', router));
   }
 
+  private async serveStatic(): Promise<void> {
+    this.app.use(express.static(path.resolve(__dirname, '../public')));
+  }
+
   public async start(): Promise<void> {
     await this.connectDB();
     await this.initMiddlewares();
     await this.initRoutes();
+    await this.serveStatic();
 
     this.app.listen(this.PORT, () => {
       console.log(`Teachme app listeting port ${this.PORT}`);

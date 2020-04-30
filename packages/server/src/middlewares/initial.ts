@@ -1,7 +1,26 @@
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import cookieParser from 'cookie-parser';
+import cookieSession from 'express-session';
+import redis from 'redis';
+import connectRedis from 'connect-redis';
+
+import getRedisHost from '../utils/get-redis-host';
+
+const RedisStore = connectRedis(cookieSession);
+const client = redis.createClient({
+  host: getRedisHost(),
+  port: Number(process.env.REDIS_PORT),
+});
+
+client.on('ready', () => {
+  console.log('redis ready');
+})
+
+client.on('error', (e) => {
+  console.log('redis error');
+  console.log(e)
+})
 
 export default [
   {
@@ -23,7 +42,24 @@ export default [
     args: [],
   },
   {
-    middleware: cookieParser,
-    args: [],
+    middleware: cookieSession,
+    args: [
+      {
+        secret: process.env.COOKIE_SECRET || 'test',
+        name: 'session',
+        store: new RedisStore({
+          client,
+          ttl: 14400,
+        }),
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+          maxAge: 86400000,
+          sameSite: true,
+          secure: process.env.NODE_ENV === 'production',
+          httpOnly: true,
+        },
+      },
+    ],
   },
 ];

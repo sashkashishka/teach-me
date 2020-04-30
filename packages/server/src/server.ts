@@ -1,6 +1,3 @@
-/* eslint-disable import/first */
-// require('dotenv').config();
-import { config } from 'dotenv';
 import App from './app';
 import connectDB from './db';
 import { initialMiddlewares } from './middlewares';
@@ -11,8 +8,6 @@ import {
 
 
 const PORT = Number(process.env.PORT || 3000);
-
-config({ path: './.env' });
 
 const server = new App({
   routes: [

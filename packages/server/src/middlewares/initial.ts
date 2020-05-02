@@ -22,6 +22,16 @@ client.on('error', (e) => {
   console.log(e)
 })
 
+
+declare global {
+  module Express {
+    interface Session {
+      isAuth: boolean;
+      login: string;
+    }
+  }
+}
+
 export default [
   {
     middleware: helmet,
@@ -54,7 +64,7 @@ export default [
         resave: false,
         saveUninitialized: false,
         cookie: {
-          maxAge: 86400000,
+          maxAge: 14400000,
           sameSite: true,
           secure: process.env.NODE_ENV === 'production',
           httpOnly: true,

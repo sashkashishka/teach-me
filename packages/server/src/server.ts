@@ -1,19 +1,14 @@
 import App from './app';
 import connectDB from './db';
 import { initialMiddlewares } from './middlewares';
-import {
-  logInRouter,
-  pingRouter,
-} from './routes';
+import routes from './routes';
 
 
 const PORT = Number(process.env.PORT || 3000);
 
+// @todo add error catch middleware
 const server = new App({
-  routes: [
-    logInRouter,
-    pingRouter,
-  ],
+  routes,
   middlewares: [
     ...initialMiddlewares,
   ],

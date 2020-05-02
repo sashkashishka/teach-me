@@ -1,28 +1,26 @@
 import express, { Request, Response } from 'express';
-// import { SessionOptions } from 'express-session';
 
-import ClientsModel from '../../models/clients';
+import { ClientModel } from '../../models';
+import { ErrorResBody } from './types';
 
 const router = express.Router();
 
-const path = '/auth/login';
+const path = '/api/login';
+
 
 interface LoginReqBody {
   login: string;
   password: string;
 }
 
-interface AuthResError {
-  error: string;
-  errorObj?: Error;
-}
-
 interface AuthResSuccess {
   name: string;
   stars: number;
+  // @todo add proper path
+  redirect: string;
 }
 
-type LoginResBody = AuthResError
+type LoginResBody = ErrorResBody
   | AuthResSuccess;
 
 type LoginReq = Request<{}, LoginResBody, LoginReqBody>;
@@ -37,10 +35,9 @@ router.post(path, async (req: LoginReq, res: LoginRes) => {
     password,
   } = body;
 
-  console.log(req?.session?.isNew())
-
   try {
-    const [client] = await ClientsModel.find({ login });
+    const [client] = await ClientModel
+      .find({ login });
 
     if (client === undefined || login !== password) {
       return res.status(401).json({
@@ -48,12 +45,22 @@ router.post(path, async (req: LoginReq, res: LoginRes) => {
       });
     }
 
-    await client.save();
+    if (!client.active) {
+      return res.status(200).json({
+        error: 'Цей аккаунт деактивовано',
+      });
+    }
+
+    if (req.session && !req.session.isAuth) {
+      req.session.isAuth = true;
+      req.session.login = login;
+    }
 
     return res.status(200)
       .json({
         name: client.name,
         stars: client.stars,
+        redirect: 'welcome to the rabbit hole',
       });
   } catch (e) {
     return res.status(500).json({

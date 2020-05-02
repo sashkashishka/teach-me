@@ -2,16 +2,20 @@ import mongoose, { Document } from 'mongoose';
 
 const { Schema } = mongoose;
 
-export interface Task extends Document {
-  name: string;
-  component: string;
+export interface Task {
+  path: string; // path to component
 }
 
-const TaskSchema = new Schema(
-  {
-    name: String,
-    component: String,
-  },
-);
+export interface Tasks extends Document {
+  t: Task;
+}
 
-export default mongoose.model<Task>('Tasks', TaskSchema, 'tasks');
+const TaskSchema = new Schema({
+  t: {
+    path: {
+      type: String,
+    },
+  },
+});
+
+export default mongoose.model<Tasks>('Tasks', TaskSchema, 'tasks');

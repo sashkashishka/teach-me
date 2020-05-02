@@ -9,15 +9,10 @@ const router = express.Router();
 
 const path = '/api/tasks';
 
-interface TasksReqBody {
-  task: string; // task name
-  pos: number;
-}
-
 type TasksResBody = Tasks
   | ErrorResBody;
 
-type TasksReq = Request<{}, TasksResBody, TasksReqBody>;
+type TasksReq = Request<{}, TasksResBody>;
 
 type TasksRes = Response<TasksResBody>;
 

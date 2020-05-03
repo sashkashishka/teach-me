@@ -11,14 +11,14 @@ const connectDB = async (): Promise<void> => {
     );
 
     if (process.env.NODE_ENV === 'dev') {
-      console.log(111)
       mongoose.set('debug', true);
     }
 
     console.log('DB connected');
-  } catch(e) {
+  } catch (e) {
     console.error(e);
-    throw e;
+    console.error(e.message);
+    process.exit(2);
   }
 };
 

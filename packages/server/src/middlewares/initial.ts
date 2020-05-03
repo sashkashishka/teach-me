@@ -45,8 +45,8 @@ export default [
         store: new FileStore({
           ttl: 14400,
         }),
-        resave: false,
-        saveUninitialized: false,
+        resave: true,
+        saveUninitialized: true,
         cookie: {
           maxAge: 14400000,
           sameSite: true,

@@ -26,7 +26,7 @@ type SettingsReq = Request<{}, SettingsResBody, SettingsReqBody>;
 type SettingsRes = Response<SettingsResBody>;
 
 
-router.use(checkSession);
+router.use(path, checkSession);
 
 router.post(path, async (req: SettingsReq, res: SettingsRes) => {
   const { body } = req;

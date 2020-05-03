@@ -4,5 +4,3 @@ build:
       dockerfile: Dockerfile
     web:
       dockerfile: Dockerfile
-release: 
-  image: web

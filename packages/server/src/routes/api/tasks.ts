@@ -17,7 +17,7 @@ type TasksReq = Request<{}, TasksResBody>;
 type TasksRes = Response<TasksResBody>;
 
 
-router.use(checkSession);
+router.use(path, checkSession);
 
 router.get(path, async (req: TasksReq, res: TasksRes) => {
   try {

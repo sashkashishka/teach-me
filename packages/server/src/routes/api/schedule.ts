@@ -26,7 +26,7 @@ type ScheduleReq = Request<ScheduleParams, ScheduleResBody>;
 type ScheduleRes = Response<ScheduleResBody>;
 
 
-router.use(checkSession);
+router.use(path, checkSession);
 
 router.get(path, async (req: ScheduleReq, res: ScheduleRes) => {
   const { session, params } = req;

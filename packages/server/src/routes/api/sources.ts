@@ -26,7 +26,7 @@ type SourcesReq = Request<{}, SourcesResBody, SourcesReqBody>;
 type SourcesRes = Response<SourcesResBody>;
 
 
-router.use(checkSession);
+router.use(path, checkSession);
 
 router.post(path, async (req: SourcesReq, res: SourcesRes) => {
   const { body } = req;

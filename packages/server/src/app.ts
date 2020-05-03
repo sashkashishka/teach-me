@@ -51,7 +51,7 @@ class App {
   }
 
   private async serveStatic(): Promise<void> {
-    this.app.use(express.static(path.resolve(__dirname, '../public')));
+    this.app.use(express.static(path.resolve(__dirname, 'public')));
   }
 
   public async start(): Promise<void> {

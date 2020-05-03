@@ -30,6 +30,15 @@ const getPlugins = () => {
       },
     },
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        limit: 0,
+        rule: {
+          include: /\.inline\.svg$/,
+        },
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Teach Me - Онлайн вправи',

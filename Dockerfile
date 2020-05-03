@@ -2,15 +2,11 @@ FROM node:12
 
 WORKDIR /usr/src/app
 
-COPY packages/front/public ./public
+COPY . .
 
-COPY packages/server/package.json ./
+RUN ls -la
 
-RUN yarn --no-lockfile
-
-COPY packages/server/build ./
-
-EXPOSE 3000
+RUN yarn --prod --no-lockfile
 
 CMD ["node", "server.js"]
 

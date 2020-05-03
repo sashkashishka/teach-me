@@ -2,6 +2,7 @@ import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import cookieSession from 'express-session';
+import compression from 'compression';
 import sessionFileStore from 'session-file-store';
 
 
@@ -18,6 +19,10 @@ declare global {
 }
 
 export default [
+  {
+    middleware: compression,
+    args: [],
+  },
   {
     middleware: helmet,
     args: [],
@@ -50,7 +55,7 @@ export default [
         cookie: {
           maxAge: 14400000,
           sameSite: true,
-          secure: process.env.NODE_ENV === 'production',
+          secure: false,
           httpOnly: true,
         },
       },

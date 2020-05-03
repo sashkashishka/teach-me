@@ -1,4 +1,10 @@
-import express, { Express, Router } from 'express';
+import express, {
+  Express,
+  Router,
+  Request,
+  Response,
+  NextFunction,
+} from 'express';
 import path from 'path';
 
 
@@ -51,13 +57,46 @@ class App {
   }
 
   private async serveStatic(): Promise<void> {
-    this.app.use(express.static(path.resolve(__dirname, 'public')));
+    this.app.use(express.static(path.resolve(
+      __dirname,
+      process.env.NODE_ENV === 'production'
+        ? 'public'
+        : '../public'
+    )));
+  }
+
+  private async setCachePolicy(): Promise<void> {
+    this.app.use((req: Request, res: Response, next: NextFunction) => {
+      const { path: urlPath } = req;
+      const { ext } = path.parse(urlPath);
+
+      switch (ext) {
+        case ('.json'):
+        case ('.html'): {
+          res.setHeader('Cache-control', 'public, max-age=0, must-revalidate');
+          break;
+        }
+
+        case ('.css'):
+        case ('.js'):
+        default: {
+          if (urlPath.match('sw.js')) {
+            res.setHeader('Cache-control', 'public, max-age=0, must-revalidate');
+          } else {
+            res.setHeader('Cache-control', 'public, max-age=31536000, immutable');
+          }
+        }
+      }
+
+      next();
+    });
   }
 
   public async start(): Promise<void> {
     await this.connectDB();
     await this.initMiddlewares();
     await this.initRoutes();
+    await this.setCachePolicy();
     await this.serveStatic();
 
     this.app.listen(this.PORT, () => {

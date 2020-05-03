@@ -46,7 +46,8 @@
   "devDependencies": {
     "gatsby-plugin-eslint": "2.0.8",
     "gatsby-plugin-typescript": "2.3.3",
-    "gatsby-plugin-webpack-bundle-analyzer": "1.0.5"
+    "gatsby-plugin-webpack-bundle-analyzer": "1.0.5",
+    "http-proxy-middleware": "1.0.3"
   },
   "scripts": {
     "develop": "gatsby develop",

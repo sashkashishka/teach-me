@@ -1,3 +1,4 @@
+const { createProxyMiddleware } = require('http-proxy-middleware');
 /**
  * @see https://nodejs.org/api/cli.html#cli_node_tls_reject_unauthorized_value
  */
@@ -26,15 +27,6 @@ const getPlugins = () => {
         prefixes: [
           '/days/*',
         ],
-      },
-    },
-    {
-      resolve: 'gatsby-plugin-react-svg',
-      options: {
-        limit: 0,
-        rule: {
-          include: /\.inline\.svg$/,
-        },
       },
     },
     {

@@ -1,25 +1,29 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { Global, css } from '@emotion/core';
 import { Flex, Box } from 'rebass';
 import Helmet from 'react-helmet';
-
 
 import Header from 'Components/header';
 import Footer from 'Components/footer';
 
 import theme from 'Constants/theme';
 
-const Page = ({
+
+interface PageProps {
+  title: string;
+  /**
+   * is user authorised and show him MyAccount menu
+   */
+  auth?: boolean;
+}
+
+const Page: React.FC<PageProps> = ({
   children,
   title,
-  description,
-  canonical,
-  noindex,
-  headerVariant,
+  auth = false,
   ...rest
 }) => (
-  <Fragment>
+  <React.Fragment>
     <Global
       styles={css`
           body {
@@ -61,7 +65,7 @@ const Page = ({
     />
 
     <Helmet>
-      <html lang="ua" />
+      <html lang="uk" />
       <title>
         {title}
       </title>
@@ -73,7 +77,7 @@ const Page = ({
       minHeight="100vh"
     >
       <Header
-        variant={headerVariant}
+        auth={auth}
       />
 
       <Box
@@ -88,22 +92,7 @@ const Page = ({
 
       <Footer />
     </Flex>
-  </Fragment>
+  </React.Fragment>
 );
-
-Page.propTypes = {
-  children: PropTypes.node.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  canonical: PropTypes.string,
-  noindex: PropTypes.bool,
-  headerVariant: PropTypes.string,
-};
-
-Page.defaultProps = {
-  canonical: '',
-  noindex: false,
-  headerVariant: 'dark',
-};
 
 export default Page;

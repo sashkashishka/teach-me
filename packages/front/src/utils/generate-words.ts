@@ -13,7 +13,10 @@ for (let i = 1072; i < 1103; i += 1) {
 }
 
 
-function generateWords(w, lineLength = 35) { let before = ''; let after = ''; const wordPos = getRandomInt(0, lineLength - w.length);
+function generateWords(w, lineLength = 35) {
+  let before = '';
+  let after = '';
+  const wordPos = getRandomInt(0, lineLength - w.length);
 
   for (let k = 0; k <= lineLength; k += 1) {
     if (wordPos === k) {

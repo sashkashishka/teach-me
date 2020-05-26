@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * @summary v1.0.0
  */
@@ -356,6 +357,22 @@ export default {
         borderRadius: 'circle',
         bg: 'secondary.0',
       },
+    },
+    'field-error': {
+      fontSize: 'caption',
+      lineHeight: 'caption',
+      color: 'error',
+    },
+    'form-error': {
+      fontSize: 'caption',
+      lineHeight: 'caption',
+      bg: 'error',
+      color: 'basic.0',
+      borderRadius: 'small',
+      textAlign: 'center',
+      py: 2,
+      px: 3,
+      mb: 3,
     },
   },
   buttons: {

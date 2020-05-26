@@ -26,6 +26,7 @@ const getPlugins = () => {
       options: {
         prefixes: [
           '/days/*',
+          '/profile/*',
         ],
       },
     },
@@ -54,7 +55,7 @@ const getPlugins = () => {
      * @NOTE do not reorder manifest and offline plugins
      * @see https://www.gatsbyjs.org/packages/gatsby-plugin-offline/
      */
-    'gatsby-plugin-offline',
+    // 'gatsby-plugin-offline',
     /**
      * @NOTE provide fonts from design
      */
@@ -123,4 +124,15 @@ module.exports = {
   },
 
   plugins: getPlugins(),
+
+  developMiddleware: (app) => {
+    app.use([
+      '/api/*',
+    ], createProxyMiddleware({
+      target: 'http://localhost:3000',
+      timeout: 30000,
+      changeOrigin: true,
+      secure: false,
+    }));
+  },
 };

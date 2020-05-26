@@ -2,18 +2,22 @@ import * as React from 'react';
 import { useParams, RouteComponentProps } from '@reach/router';
 import { Box, Heading } from 'rebass';
 
+import { useApi } from 'Hooks/useApi';
+
 import Page from 'Components/page';
 import Container from 'Components/container';
-import Link from 'Components/link';
+// import Link from 'Components/link';
 
 
-const DayPage: React.FC<RouteComponentProps<{ userSlug: string; daySlug: string }>> = ({
-  daySlug,
+const SchedulePage: React.FC<RouteComponentProps<{ userSlug: string; }>> = ({
+  userSlug,
 }) => {
-  const params = useParams();
+  const params = useApi();
+
+  // console.log('schedule', params);
   return (
     <Page
-      title="Teach me - Вправи на день"
+      title="Teach me - Розклад"
       auth
     >
       <Box>
@@ -28,8 +32,8 @@ const DayPage: React.FC<RouteComponentProps<{ userSlug: string; daySlug: string 
             as="h1"
             variant="h1"
           >
-            day
-            Потренуємося!
+            schedule!
+            {userSlug}
           </Heading>
         </Container>
       </Box>
@@ -37,4 +41,4 @@ const DayPage: React.FC<RouteComponentProps<{ userSlug: string; daySlug: string 
   );
 };
 
-export default DayPage;
+export default SchedulePage;

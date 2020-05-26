@@ -1,15 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { Link as GatsbyLink } from 'gatsby';
-import { Link as RebassLink } from 'rebass';
+import { Link as RebassLink, LinkProps as RebassLinkProps } from 'rebass';
 
-/**
- * @param {React.Props} props
- * @param {String} props.href
- * @param {String|React.Element} props.children
- * @returns {React.Element}
- */
-const Link = (props) => {
+interface LinkProps extends RebassLinkProps {
+  href: string;
+  external?: boolean;
+  variant?: string;
+}
+
+const Link: React.FC<LinkProps> = (props) => {
   const {
     href,
     children,
@@ -34,16 +33,7 @@ const Link = (props) => {
   );
 };
 
-Link.propTypes = {
-  href: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  external: PropTypes.bool,
-};
-
-Link.defaultProps = {
-  external: false,
-};
-
+// @ts-ignore
 GatsbyLink.defaultProps = {
   activeClassName: 'activeLink',
 };

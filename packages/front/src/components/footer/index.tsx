@@ -1,17 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import {
   Box,
   Text,
   Image,
 } from 'rebass';
 
-
 import Container from 'Components/container';
 import Link from 'Components/link';
 
 import lightbulb from 'Img/lightbulb.svg';
 
-export default () => (
+const Footer: React.FC = () => (
   <Box
     as="footer"
     bg="basic.5"
@@ -56,3 +55,5 @@ export default () => (
     </Container>
   </Box>
 );
+
+export default Footer;

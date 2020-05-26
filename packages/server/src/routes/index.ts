@@ -5,6 +5,7 @@ import scheduleRouter from './api/schedule';
 import settingsRouter from './api/settings';
 import sourcesRouter from './api/sources';
 import tasksRouter from './api/tasks';
+import sessionRouter from './api/session';
 
 export default [
   logInRouter,
@@ -14,4 +15,5 @@ export default [
   settingsRouter,
   sourcesRouter,
   tasksRouter,
+  sessionRouter,
 ];

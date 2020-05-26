@@ -1,9 +1,14 @@
-import React, { forwardRef } from 'react';
-import PropTypes from 'prop-types';
-import { Flex, Box } from 'rebass';
+import * as React from 'react';
+import {
+  Flex,
+  Box,
+  FlexProps,
+  // BoxProps,
+} from 'rebass';
 
-export const AdItem = props => (
+export const AdItem: React.FC<FlexProps> = props => (
   <Box
+    // @ts-ignore
     flexGrow={1}
     flexShrink={1}
     flexBasis={{
@@ -15,8 +20,9 @@ export const AdItem = props => (
   />
 );
 
-export const FluidItem = props => (
+export const FluidItem: React.FC<FlexProps> = props => (
   <Box
+    // @ts-ignore
     flexGrow={1}
     flexShrink={0}
     flexBasis="auto"
@@ -29,11 +35,7 @@ export const FluidItem = props => (
   />
 );
 
-AdItem.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-const AdRow = forwardRef((props, ref) => (
+const AdRow: React.ForwardRefRenderFunction<any, FlexProps> = React.forwardRef((props, ref) => (
   <Flex
     ref={ref}
     width="100%"
@@ -45,9 +47,5 @@ const AdRow = forwardRef((props, ref) => (
     {...props}
   />
 ));
-
-AdRow.propTypes = {
-  children: PropTypes.arrayOf(AdItem).isRequired,
-};
 
 export default AdRow;

@@ -10,6 +10,7 @@ module.exports = {
       Hooks: path.resolve(__dirname, 'src/hooks'),
       Static: path.resolve(__dirname, 'static'),
       Utils: path.resolve(__dirname, 'src/utils'),
+      Types: path.resolve(__dirname, 'src/types'),
     },
   },
 };

@@ -80,7 +80,7 @@ class App {
         case ('.css'):
         case ('.js'):
         default: {
-          if (urlPath.match('sw.js')) {
+          if (urlPath.match('sw.js') || urlPath === '/') {
             res.setHeader('Cache-control', 'public, max-age=0, must-revalidate');
           } else {
             res.setHeader('Cache-control', 'public, max-age=31536000, immutable');

@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Box } from 'rebass';
+import * as React from 'react';
+import { Box, BoxProps } from 'rebass';
 
-const Container = props => (
+const Container: React.FC<BoxProps> = props => (
   <Box
     maxWidth="1110px"
     mx="auto"
@@ -10,13 +9,5 @@ const Container = props => (
     {...props}
   />
 );
-
-Container.propTypes = {
-  children: PropTypes.node,
-};
-
-Container.defaultProps = {
-  children: null,
-};
 
 export default Container;

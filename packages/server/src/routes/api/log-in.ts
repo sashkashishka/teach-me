@@ -46,7 +46,7 @@ router.post(path, async (req: LoginReq, res: LoginRes) => {
     }
 
     if (!client.active) {
-      return res.status(200).json({
+      return res.status(400).json({
         error: 'Цей аккаунт деактивовано',
       });
     }

@@ -27,9 +27,6 @@ const TaskPage = ({ taskSlug, daySlug }) => {
         </Link>
       </Container>
 
-      <Component
-        data={data}
-      />
 
       <Container
         display="flex"

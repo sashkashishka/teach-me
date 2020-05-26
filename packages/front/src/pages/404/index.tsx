@@ -4,12 +4,8 @@ import { Heading } from 'rebass';
 import Page from 'Components/page';
 import Container from 'Components/container';
 
-
-export default (props) => (
-  <Page
-    {...props}
-    headerVariant="light"
-  >
+const NotFoundPage: React.FC = () => (
+  <Page>
     <Container>
       <Heading
         as="h1"
@@ -21,3 +17,5 @@ export default (props) => (
     </Container>
   </Page>
 );
+
+export default NotFoundPage;

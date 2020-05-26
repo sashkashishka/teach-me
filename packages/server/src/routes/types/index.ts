@@ -1,3 +1,3 @@
-export interface SessionCookie {
-  session: string;
+export interface SessionRequest {
+  session?: any;
 }

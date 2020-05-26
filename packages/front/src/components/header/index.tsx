@@ -32,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ auth }) => {
         height="100px"
       >
         <Link
-          href={auth ? `/profile/${userSlug}` : '/'}
+          href="/"
           variant="footerLink"
         >
           <Image

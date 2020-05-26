@@ -7,12 +7,10 @@ import { FORM_ERROR } from 'final-form';
 import { navigate } from '@reach/router';
 import { mergeRight } from 'ramda';
 
+import { SignInResponse as SignInResponseSuccess } from 'Types/api';
+
 import { FormValues } from './index';
 
-
-interface SignInReponseSuccess {
-  name: string;
-}
 
 interface SignInResponseFail {
   error: string;
@@ -35,9 +33,9 @@ function submit(values: FormValues): Promise<{ [FORM_ERROR]: string } | void> {
     },
     config,
   )).then(
-    ({ status }: AxiosResponse<SignInReponseSuccess>) => {
+    ({ status, data }: AxiosResponse<SignInResponseSuccess>) => {
       if (status === 200) {
-        navigate('/profile/');
+        navigate(`/profile/${data.login}`);
       }
       return undefined;
     },

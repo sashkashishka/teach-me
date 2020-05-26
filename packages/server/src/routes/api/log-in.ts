@@ -15,6 +15,7 @@ interface LoginReqBody {
 
 interface AuthResSuccess {
   name: string;
+  login: string;
   stars: number;
   // @todo add proper path
   redirect: string;
@@ -59,6 +60,7 @@ router.post(path, async (req: LoginReq, res: LoginRes) => {
     return res.status(200)
       .json({
         name: client.name,
+        login: client.login,
         stars: client.stars,
         redirect: 'welcome to the rabbit hole',
       });

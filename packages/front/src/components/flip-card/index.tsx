@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {
   Card,
   Box,
@@ -8,8 +7,9 @@ import {
 
 import Container from 'Components/container';
 
+
 const BrainBoxCard = ({ data: { front, back }, sx, ...rest }) => {
-  const [isFlipped, setFlipped] = useState(false);
+  const [isFlipped, setFlipped] = React.useState(false);
 
   return (
     <Container

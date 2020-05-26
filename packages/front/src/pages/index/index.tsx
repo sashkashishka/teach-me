@@ -7,6 +7,7 @@ import {
 
 import { useApi } from 'Hooks/useApi';
 import { Api } from 'Constants/api';
+import { SessionResponse } from 'Types/api';
 
 import Page from 'Components/page';
 import Container from 'Components/container';
@@ -14,7 +15,6 @@ import Link from 'Components/link';
 import AdRow, { AdItem } from 'Components/adrow';
 import AuthForm from 'Components/auth';
 
-import { SessionResponse } from 'Types/api';
 
 import rain from 'Img/rain.jpg';
 

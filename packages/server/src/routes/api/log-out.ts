@@ -19,9 +19,7 @@ router.get(path, async (req: Request, res: LogoutRes) => {
     session.login = '';
   }
 
-  return res.status(200).json({
-    redirect: '/',
-  });
+  return res.status(200).redirect('/');
 });
 
 export default router;
